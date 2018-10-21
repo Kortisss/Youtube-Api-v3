@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Youtube</title>
+    <!--<meta http-equiv="refresh" content="0.2" >-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:500" rel="stylesheet">
+
+</head>
+<body>
+
+    <header>
+        <div class="head">
+            <a href="youtube app ver_1.html">
+                <img src="./img/yt_logo_rgb_dark.png" alt="yt_logo_rgb_dark">
+            </a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="szukaj kanału/video" id="input">
+        </div>
+        <nav>
+            
+        </nav>
+    </header>
+    <main>
+
+    </main>
+
+
+
+
+<!--todo 
+    -make a bar with a few subscribers 
+    -display their last videos form 48h for each
+-->
+
+
+    <script>
+    $(document).ready(function(){
+
+        var key = 'AIzaSyATjcRlL2tA7YlENFnpJzcbyBz6b2v9DuQ';      
+        var searchURL = 'https://www.googleapis.com/youtube/v3/search';
+
+
+        
+
+        loadVids();
+
+        function loadVids(){
+            $("#input").keypress(function(e){
+                
+            var query = $("#input").val();
+            var search = 
+            {
+                part: 'snippet',
+                key: key,
+                maxResults: 5,
+                q: query,
+                type: 'snippet,contentDetails',
+                order: 'date'
+            }
+
+                console.log("query2 :    "+query);
+
+                if(e.which == 13){
+
+                    $.getJSON(searchURL, search, function(data){
+                        console.log(data);
+
+                        resultsLoop(data);
+                    })
+                }
+            });
+
+        }
+
+        function mainVid(id){
+            $('main').html(`
+            <div class="mainVid">
+                    <iframe
+                        src="https://www.youtube.com/embed/${id}"
+                        frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen>
+                    </iframe>
+            </div>
+            `);
+        }
+        //main function
+        function resultsLoop(data)
+        {   
+            $.each(data.items, function(i,item){
+                var title = item.snippet.title;
+                var author = item.snippet.channelTitle;
+                var thumb = item.snippet.thumbnails.high.url;
+                var vid = item.id.videoId;
+                var date = item.snippet.publishedAt.substring(0,10);
+                var minutes = item.snippet.publishedAt.substring(12,16);
+                
+                $('main').append(`
+                <article data-key="${vid}">
+                    <img src="${thumb}">
+                    <div class="details">
+                        <h4>${title}</h4>
+                        <p>${author}</p>
+                        <p>${date} ${minutes}</p>
+                    </div>    
+                </article>
+                `);
+            });
+        }
+        
+        $('main').on('click', 'article', function () {
+            var id = $(this).attr('data-key');
+            mainVid(id);
+        });   
+    });  
+            
+    </script>
+</body>
+</html>
