@@ -1,0 +1,109 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    background-color: rgb(48, 48, 48);
+}
+header .head img{
+    width: 20vw;
+}
+header{
+    text-align: center;
+    padding: 10px 0 5px;
+}
+.subEl{
+    margin:0 5px 0;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+
+
+    transition: all 0.7s;
+    position: relative;
+}
+.subEl:hover{
+    width: 150px;
+    height: 150px;
+}
+
+.scale-down {
+    object-fit: scale-down;
+}
+
+main{
+    min-height: 70vh;
+    margin: auto;
+    max-width: 90vw;
+    background-color: gainsboro;
+        -webkit-box-shadow: 15px 9px 33px 0px rgba(0,0,0,0.48);
+        -moz-box-shadow: 15px 9px 33px 0px rgba(0,0,0,0.48);
+        box-shadow: 15px 9px 33px 0px rgba(0,0,0,0.48);
+    padding: 0 10px 15px; 
+}
+h2{
+    margin: 0px;
+    text-align: center;
+    line-height: 1.3;
+    font-weight: 700;
+    padding: 5px 0 15px;
+}
+.iframe{
+    text-align: center;
+}
+.iframe iframe{
+    width: 70%;
+    height: 400px;
+}
+article{
+    padding: 8px 12px;
+    align-items: center;
+    display: flex;
+    border: 1px solid gainsboro;
+    border-radius: 5px; 
+    margin: 0 auto;
+    transition: all 0.2s;
+}
+article:hover{
+    border: 1px solid gray;
+}
+article img{
+    width: 150px;
+    height: 100px;
+    margin-right: 5px;
+}
+.details{
+    padding: 8px 22px;
+}
+h4{
+    padding: 0;
+    margin: 0;
+    line-height: 1.3;
+    font-weight: 600;
+}
+p{
+    padding: 0;
+    margin: 0;
+    line-height: 1.3;
+    color: grey;
+    font-size: 0.9rem;
+}
+.search{
+    padding: 10px;
+}
+.search input{
+    height:30px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding:5px;
+}
+.mainVid{
+    text-align: center;
+    width: 100%;
+    height: 75vh;
+    padding-top: 10px;
+}
+.mainVid iframe{
+    height: 90%;
+    width: 90%;
+}
